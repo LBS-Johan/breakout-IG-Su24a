@@ -5,25 +5,27 @@ using UnityEngine;
 
 public class PlayerMovments : MonoBehaviour
 {
-    public float speed=5;
-    public float maxX = 7.5f; 
 
-    float movmentHorizontal; 
-
+    Rigidbody2D nu; 
     // Start is called before the first frame update
     void Start()
     {
-        
+        nu = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        movmentHorizontal = Input.GetAxis("Horizontal");
-        if((movmentHorizontal>0 && transform.position.x<maxX) || (movmentHorizontal<0 && transform.position.x > -maxX))
+        nu.velocity = new Vector2(0, 0);
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right * movmentHorizontal * speed * Time.deltaTime; 
+            nu.velocity = new Vector2(7, 0); 
+
         }
-         
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            nu.velocity = new Vector2(-7, 0);
+
+        }
     }
 }
